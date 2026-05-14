@@ -37,6 +37,51 @@ body{font-family:var(--font);background:var(--bg);color:var(--t1);font-size:13px
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 .mysmq-logo-wrap{text-align:center;margin-bottom:28px}
 .mysmq-logo-icon{width:64px;height:64px;background:linear-gradient(135deg,var(--teal),var(--ac));border-radius:18px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px;box-shadow:0 12px 32px rgba(20,184,166,0.35);font-family:var(--font-d);font-size:26px;font-weight:800;color:#fff;letter-spacing:-1px}
+
+/* Logo Maurilait — cadre dégradé premium */
+.logo-frame-wrap{
+  display:inline-block;
+  position:relative;
+  margin-bottom:16px;
+}
+.logo-frame-wrap::before{
+  content:'';
+  position:absolute;inset:-2px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#14B8A6,#3B82F6,#8B5CF6,#14B8A6);
+  background-size:300% 300%;
+  animation:gradientShift 4s ease infinite;
+  z-index:0;
+  opacity:0.85;
+}
+.logo-frame-wrap::after{
+  content:'';
+  position:absolute;inset:2px;
+  border-radius:19px;
+  background:var(--s1);
+  z-index:1;
+}
+@keyframes gradientShift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.logo-frame-inner{
+  position:relative;z-index:2;
+  background:#fff;
+  border-radius:18px;
+  padding:12px 20px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 32px rgba(20,184,166,0.25),0 2px 8px rgba(0,0,0,0.3);
+}
+.logo-frame-inner img{
+  height:56px;
+  width:auto;
+  object-fit:contain;
+  display:block;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+}
+
 .mysmq-title{font-family:var(--font-d);font-size:26px;font-weight:800;margin-bottom:5px}
 .mysmq-title .my{color:var(--teal)}.mysmq-title .smq{color:var(--t1)}
 .mysmq-ref{display:inline-block;font-size:11px;color:var(--t2);background:var(--s2);border:1px solid var(--b1);padding:4px 12px;border-radius:20px}
@@ -279,7 +324,11 @@ input[type=checkbox]{accent-color:var(--teal);width:13px;height:13px}
   <div class="login-bg"></div><div class="login-grid"></div>
   <div class="login-card">
     <div class="mysmq-logo-wrap">
-      <img id="loginMaurilaitLogo" src="" alt="Maurilait" style="height:60px;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto;object-fit:contain">
+      <div class="logo-frame-wrap">
+        <div class="logo-frame-inner">
+          <img id="loginMaurilaitLogo" src="" alt="Maurilait">
+        </div>
+      </div>
       <div class="mysmq-title"><span class="my">My</span><span class="smq">SMQ</span></div>
       <span class="mysmq-ref">ENRG07-SMQ · Version 4.2 · MSA Eclosia</span>
     </div>
@@ -431,7 +480,7 @@ const MAURILAIT_LOGO = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYS
 /* ════════════════════════════════════════════
    DATA
 ════════════════════════════════════════════ */
-const TYPES   = ["Réclamation Client","Réclamation Fournisseur","NC Matières Premières","NC Audits","SST / Environnement","Écart vs objectif","Process","Autres"];
+const TYPES   = ["Réclamation Client","Réclamation Fournisseur","NC Matières Premières","NC Produits finis","NC Audits","SST / Environnement","Écart vs objectif","Process","Autres"];
 const CATS    = ["Critique","Majeure","Mineure"];
 const STATUTS = ["Ouvert","En cours","Résolu","Clôturé"];
 const PRIOS   = ["Critique","Haute","Moyenne","Faible"];
@@ -567,13 +616,18 @@ function initLoginDropdown() {
   input.addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
   document.getElementById('lp').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
 
-  // Remember me restore
-  const saved = localStorage.getItem('mysmq_user');
+  // Remember me restore — identifiant + mot de passe
+  const saved = localStorage.getItem('mysmq_remember');
   if (saved) {
     try {
-      const {id} = JSON.parse(saved);
+      const {id, pwd} = JSON.parse(saved);
       const u = USERS.find(x=>x.id===id);
-      if (u) { input.value=u.name; document.getElementById('selectedUserId').value=u.id; document.getElementById('rememberMe').checked=true; }
+      if (u) {
+        input.value = u.name;
+        document.getElementById('selectedUserId').value = u.id;
+        document.getElementById('lp').value = pwd || '';
+        document.getElementById('rememberMe').checked = true;
+      }
     } catch(e){}
   }
 }
@@ -602,8 +656,11 @@ function doLogin() {
   if (!u) { err.style.display='block'; err.textContent='Identifiant ou mot de passe incorrect.'; return; }
   err.style.display='none';
 
-  if (document.getElementById('rememberMe').checked) localStorage.setItem('mysmq_user', JSON.stringify({id:u.id}));
-  else localStorage.removeItem('mysmq_user');
+  if (document.getElementById('rememberMe').checked) {
+    localStorage.setItem('mysmq_remember', JSON.stringify({id:u.id, pwd:pass}));
+  } else {
+    localStorage.removeItem('mysmq_remember');
+  }
 
   currentUser = u;
   document.getElementById('loginScreen').style.display='none';
@@ -619,8 +676,12 @@ function doLogout() {
   currentUser=null;
   document.getElementById('app').style.display='none';
   document.getElementById('loginScreen').style.display='flex';
-  document.getElementById('lp').value='';
-  if (!document.getElementById('rememberMe').checked) { document.getElementById('loginUserInput').value=''; document.getElementById('selectedUserId').value=''; }
+  // Ne pas effacer si "Se souvenir de moi" est coché
+  if (!document.getElementById('rememberMe').checked) {
+    document.getElementById('lp').value='';
+    document.getElementById('loginUserInput').value='';
+    document.getElementById('selectedUserId').value='';
+  }
 }
 
 /* ════════════════════════════════════════════
