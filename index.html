@@ -3,8 +3,6 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js"></script>
 <title>MySMQ — Système de Management Qualité</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
@@ -328,7 +326,7 @@ input[type=checkbox]{accent-color:var(--teal);width:13px;height:13px}
     <div class="mysmq-logo-wrap">
       <div class="logo-frame-wrap">
         <div class="logo-frame-inner">
-          <img id="loginMaurilaitLogo" src="data:image/jpeg;base64,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" alt="Maurilait" style="height:56px;width:auto;object-fit:contain;display:block;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.08));">
+          <img id="loginMaurilaitLogo" src="" alt="Maurilait">
         </div>
       </div>
       <div class="mysmq-title"><span class="my">My</span><span class="smq">SMQ</span></div>
@@ -361,6 +359,12 @@ input[type=checkbox]{accent-color:var(--teal);width:13px;height:13px}
     <button class="btn primary" style="width:100%;justify-content:center;padding:13px" onclick="doLogin()">
       <i class="fa-solid fa-right-to-bracket"></i> Se connecter
     </button>
+
+    <div class="demo-info">
+      <strong>Comptes de démonstration :</strong>
+      admin / admin123 (Admin) &nbsp;·&nbsp; marie.rakoto / marie123<br>
+      jean.rasolo / jean123 &nbsp;·&nbsp; sophie.andria / sophie123
+    </div>
   </div>
 </div>
 
@@ -494,35 +498,7 @@ const DEFAULT_USERS = [
   {id:4,name:"Sophie Andria",email:"sophie.maurilait@eclosia.mg",username:"sophie.andria",role:"user",password:"sophie123",avatar:"SA",poste:"Responsable Maintenance"},
 ];
 
-/* ════════════════════════════════════════════
-   FIREBASE CONFIG (à configurer par l'utilisateur)
-════════════════════════════════════════════ */
-const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyDemoKey",
-  authDomain: "mysmq-demo.firebaseapp.com",
-  databaseURL: "https://mysmq-demo-default-rtdb.firebaseio.com",
-  projectId: "mysmq-demo",
-  storageBucket: "mysmq-demo.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abc123def"
-};
-
-let db = null;
-let useFirebase = false;
-
-// Tentative d'initialisation Firebase (silencieuse si non configurée)
-try {
-  if (FIREBASE_CONFIG.projectId !== 'mysmq-demo') {
-    firebase.initializeApp(FIREBASE_CONFIG);
-    db = firebase.database();
-    useFirebase = true;
-    console.log('Firebase initialized');
-  }
-} catch(e) { console.log('Firebase not configured, using localStorage'); }
-
-/* ════════════════════════════════════════════
-   DATA SYNC (localStorage + Firebase)
-════════════════════════════════════════════ */
+/* ── Chargement localStorage ── */
 function loadData() {
   try {
     const u = localStorage.getItem('mysmq_users');
@@ -533,28 +509,8 @@ function loadData() {
     };
   } catch(e) { return { users: DEFAULT_USERS, facs: [] }; }
 }
-
-function saveUsers() {
-  try {
-    localStorage.setItem('mysmq_users', JSON.stringify(USERS));
-    if (useFirebase && db) db.ref('users').set(USERS).catch(e => console.error('Firebase save error:', e));
-  } catch(e){}
-}
-
-function saveFacs() {
-  try {
-    localStorage.setItem('mysmq_facs', JSON.stringify(FACS));
-    if (useFirebase && db) db.ref('facs').set(FACS).catch(e => console.error('Firebase save error:', e));
-  } catch(e){}
-}
-
-function savePage(page) {
-  try { localStorage.setItem('mysmq_lastPage', page); } catch(e){}
-}
-
-function loadLastPage() {
-  try { return localStorage.getItem('mysmq_lastPage') || 'facs'; } catch(e) { return 'facs'; }
-}
+function saveUsers() { try { localStorage.setItem('mysmq_users', JSON.stringify(USERS)); } catch(e){} }
+function saveFacs()  { try { localStorage.setItem('mysmq_facs',  JSON.stringify(FACS));  } catch(e){} }
 
 const _loaded = loadData();
 let USERS = _loaded.users;
@@ -707,26 +663,17 @@ function doLogin() {
   }
 
   currentUser = u;
-  // Sauvegarder la session (pour restore après refresh)
-  try { sessionStorage.setItem('mysmq_sessionUser', JSON.stringify({id: u.id})); } catch(e){}
   document.getElementById('loginScreen').style.display='none';
   document.getElementById('app').style.display='flex';
   document.getElementById('uav').textContent = u.avatar;
   document.getElementById('uname').textContent = u.name;
   document.getElementById('urole').textContent = u.role==='admin'?'Administrateur':u.poste;
   if (u.role!=='admin') { document.getElementById('navUsers').style.display='none'; document.getElementById('sbUsers').style.display='none'; }
-  initSelects(); 
-  // Restaurer la dernière page visitée
-  const lastPage = loadLastPage();
-  setPage(lastPage);
-  if (lastPage === 'dash') setTimeout(renderCharts, 80);
-  if (lastPage === 'users') renderUsers();
+  initSelects(); renderTable();
 }
 
 function doLogout() {
   currentUser=null;
-  // Supprimer la session
-  try { sessionStorage.removeItem('mysmq_sessionUser'); } catch(e){}
   document.getElementById('app').style.display='none';
   document.getElementById('loginScreen').style.display='flex';
   // Ne pas effacer si "Se souvenir de moi" est coché
@@ -742,7 +689,6 @@ function doLogout() {
 ════════════════════════════════════════════ */
 function setPage(p) {
   currentPage = p;
-  savePage(p);
   ['facs','dash','users'].forEach(x => {
     document.getElementById('page'+x.charAt(0).toUpperCase()+x.slice(1)).style.display = x===p?'block':'none';
     const nb=document.getElementById('nav'+x.charAt(0).toUpperCase()+x.slice(1));
@@ -750,7 +696,6 @@ function setPage(p) {
     const sb=document.getElementById('sb'+x.charAt(0).toUpperCase()+x.slice(1));
     if(sb) sb.classList.toggle('act', x===p);
   });
-  if(p==='facs') renderTable();
   if(p==='dash') setTimeout(renderCharts,80);
   if(p==='users') renderUsers();
 }
@@ -809,7 +754,7 @@ function renderTable() {
       <td><div class="abtns">
         <button class="ib print-btn" title="Imprimer / PDF" onclick="printFAC('${f.id}')"><i class="fa-solid fa-print"></i></button>
         <button class="ib" title="Voir" onclick="openDetail('${f.id}')"><i class="fa-solid fa-eye"></i></button>
-        <button class="ib" title="Modifier" onclick="openEdit('${f.id}')" ${(f.statut==='Résolu'||f.statut==='Clôturé')&&currentUser?.role!=='admin'?'style="opacity:0.4;cursor:not-allowed;pointer-events:none" disabled':''}><i class="fa-solid fa-pen"></i></button>
+        <button class="ib" title="Modifier" onclick="openEdit('${f.id}')"><i class="fa-solid fa-pen"></i></button>
         ${canDel?`<button class="ib dng" title="Supprimer" onclick="confirmDelete('${f.id}')"><i class="fa-solid fa-trash"></i></button>`:''}
       </div></td>
     </tr>`;
@@ -874,25 +819,13 @@ function openForm(fac) {
     description:'',impactSecurite:'',categorie:'Majeure',priorite:'Moyenne',statut:'Ouvert',
     nombreCas:1,actionsCuratives:[],causesAnalyse:[],actionsCorrectives:[],
     decision:'',quantiteConcernee:'',coutValeur:0,coutDecision:0,coutDivers:0,
-    efficacite:[],produits:[],attachments:[],
-    createdAt: today(), createdBy: currentUser?.name,
-    historique: [{date: today(), user: currentUser?.name, action: 'Créée'}],
-    createurId:currentUser?.id,createurNom:currentUser?.name,
+    efficacite:[],produits:[],createurId:currentUser?.id,createurNom:currentUser?.name,
   };
   initCcField(formState.cc||'');
   showModal(buildFormHTML());
-  setTimeout(() => { initCcDropdown(); setupAttachmentUpload(); }, 50);
+  setTimeout(initCcDropdown,50);
 }
-function openEdit(id) {
-  const f = FACS.find(f=>f.id===id);
-  if (!f) return;
-  // Bloquer édition si Résolu/Clôturé et pas admin
-  if ((f.statut === 'Résolu' || f.statut === 'Clôturé') && currentUser?.role !== 'admin') {
-    showToast('Seuls les administrateurs peuvent modifier les fiches résolues ou clôturées', 'error');
-    return;
-  }
-  openForm(f);
-}
+function openEdit(id) { openForm(FACS.find(f=>f.id===id)); }
 
 function buildFormHTML() {
   const isEdit=!!editId, f=formState;
@@ -964,25 +897,6 @@ function buildFormHTML() {
     <div id="acorrList">${buildACorrRows(f.actionsCorrectives)}</div>
     <button class="btn sm" onclick="addACorr()" style="margin-bottom:10px"><i class="fa-solid fa-plus"></i> Ajouter</button>
 
-    <div class="fsec"><i class="fa-solid fa-paperclip"></i> Pièces jointes <span style="color:var(--t3);font-size:10px;margin-left:6px">(documents, photos, emails)</span></div>
-    <div style="background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:14px;margin-bottom:10px">
-      <input type="file" id="attachmentFile" accept="*" style="display:none">
-      <button class="btn sm primary" onclick="document.getElementById('attachmentFile').click()" style="width:100%;justify-content:center;margin-bottom:8px"><i class="fa-solid fa-plus"></i> Ajouter une pièce jointe</button>
-      <div id="attachmentsList" style="font-size:12px;color:var(--t2)">
-        ${(f.attachments||[]).map((att,i)=>`
-          <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--b1)">
-            <i class="fa-solid ${att.type.startsWith('image')?'fa-image':att.type.includes('pdf')?'fa-file-pdf':att.type.includes('word')?'fa-file-word':att.type.includes('sheet')?'fa-file-excel':'fa-file'}" style="color:var(--teal);min-width:14px"></i>
-            <div style="flex:1;overflow:hidden">
-              <div style="font-weight:500;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${att.name}</div>
-              <div style="font-size:10px;color:var(--t3)">${(att.size/1024).toFixed(1)}KB · ${att.uploadDate}</div>
-            </div>
-            <button class="ib dng" onclick="removeAttachment(${i})" title="Supprimer"><i class="fa-solid fa-trash"></i></button>
-          </div>
-        `).join('')}
-        ${!f.attachments||f.attachments.length===0?'<span style="color:var(--t3)">Aucune pièce jointe</span>':''}
-      </div>
-    </div>
-
     <div class="fsec"><i class="fa-solid fa-gavel"></i> Décision finale</div>
     <div class="frow2">
       <div class="fg"><label>Décision prise</label>
@@ -1048,75 +962,7 @@ function addAC()    { formState.actionsCuratives.push({date:today(),action:'',re
 function addCause() { formState.causesAnalyse.push({date:today(),cause:''}); document.getElementById('causeList').innerHTML=buildCauseRows(formState.causesAnalyse); }
 function addACorr() { formState.actionsCorrectives.push({date:today(),action:'',resp:'',delai:'',etat:'À faire',gpr:''}); document.getElementById('acorrList').innerHTML=buildACorrRows(formState.actionsCorrectives); }
 
-function downloadAttachment(index, facId) {
-  const f = FACS.find(x => x.id === facId);
-  if (!f || !f.attachments || !f.attachments[index]) return;
-  
-  const att = f.attachments[index];
-  const link = document.createElement('a');
-  link.href = att.data;
-  link.download = att.name;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  showToast(`Téléchargement: ${att.name}`);
-}
-
-
-  formState.attachments.splice(index, 1);
-  document.getElementById('attachmentsList').innerHTML = (formState.attachments||[]).map((att,i)=>`
-    <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--b1)">
-      <i class="fa-solid ${att.type.startsWith('image')?'fa-image':att.type.includes('pdf')?'fa-file-pdf':att.type.includes('word')?'fa-file-word':att.type.includes('sheet')?'fa-file-excel':'fa-file'}" style="color:var(--teal);min-width:14px"></i>
-      <div style="flex:1;overflow:hidden">
-        <div style="font-weight:500;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${att.name}</div>
-        <div style="font-size:10px;color:var(--t3)">${(att.size/1024).toFixed(1)}KB · ${att.uploadDate}</div>
-      </div>
-      <button class="ib dng" onclick="removeAttachment(${i})" title="Supprimer"><i class="fa-solid fa-trash"></i></button>
-    </div>
-  `).join('') || '<span style="color:var(--t3)">Aucune pièce jointe</span>';
-}
-
-function setupAttachmentUpload() {
-  const inp = document.getElementById('attachmentFile');
-  if (!inp) return;
-  inp.onchange = function(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    
-    // Limite: 10MB max
-    if (file.size > 10 * 1024 * 1024) {
-      showToast('Fichier trop volumineux (max 10MB)', 'error');
-      return;
-    }
-    
-    const reader = new FileReader();
-    reader.onload = function(evt) {
-      if (!formState.attachments) formState.attachments = [];
-      formState.attachments.push({
-        name: file.name,
-        type: file.type,
-        size: file.size,
-        uploadDate: today(),
-        data: evt.target.result // base64
-      });
-      inp.value = '';
-      document.getElementById('attachmentsList').innerHTML = (formState.attachments||[]).map((att,i)=>`
-        <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--b1)">
-          <i class="fa-solid ${att.type.startsWith('image')?'fa-image':att.type.includes('pdf')?'fa-file-pdf':att.type.includes('word')?'fa-file-word':att.type.includes('sheet')?'fa-file-excel':'fa-file'}" style="color:var(--teal);min-width:14px"></i>
-          <div style="flex:1;overflow:hidden">
-            <div style="font-weight:500;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${att.name}</div>
-            <div style="font-size:10px;color:var(--t3)">${(att.size/1024).toFixed(1)}KB · ${att.uploadDate}</div>
-          </div>
-          <button class="ib dng" onclick="removeAttachment(${i})" title="Supprimer"><i class="fa-solid fa-trash"></i></button>
-        </div>
-      `).join('');
-      showToast(`Pièce jointe: ${file.name} ajoutée`);
-    };
-    reader.readAsDataURL(file);
-  };
-}
-
-
+function saveFac() {
   const desc=document.getElementById('fDesc').value.trim();
   if(!desc){showToast('La description est obligatoire','error');return;}
   const types=Array.from(document.querySelectorAll('input[name="ftype"]:checked')).map(x=>x.value);
@@ -1141,17 +987,8 @@ function setupAttachmentUpload() {
     coutDecision:Number(document.getElementById('fCoutD').value)||0,
     coutDivers:Number(document.getElementById('fCoutDi').value)||0,
   };
-  if(editId){
-    FACS=FACS.map(f=>f.id===editId?newFac:f);
-    // Ajouter entrée historique
-    if (!newFac.historique) newFac.historique = [];
-    newFac.historique.push({date: today(), user: currentUser?.name, action: 'Modifiée'});
-    showToast('FAC modifiée ✓');
-  } else {
-    FACS=[...FACS,newFac];
-    if (!newFac.historique) newFac.historique = [{date: today(), user: currentUser?.name, action: 'Créée'}];
-    showToast('FAC créée ✓');
-  }
+  if(editId){FACS=FACS.map(f=>f.id===editId?newFac:f);showToast('FAC modifiée ✓');}
+  else{FACS=[...FACS,newFac];showToast('FAC créée ✓');}
   saveFacs(); closeModal(); renderTable();
 }
 
@@ -1244,32 +1081,10 @@ function openDetail(id) {
       <div style="overflow-x:auto"><table class="prod-table"><thead><tr><th>Date prod.</th><th>Resp. suivi</th><th>Date résol.</th><th>Resp. impacté</th><th>Date réception</th><th>Visa CS/RQ</th></tr></thead>
       <tbody>${f.efficacite.map(e=>`<tr><td>${e.dateProd||'—'}</td><td>${e.respSuivi||'—'}</td><td>${e.dateResol||'—'}</td><td>${e.respImpacte||'—'}</td><td>${e.dateReception||'—'}</td><td>${e.visaCS||'—'}</td></tr>`).join('')}</tbody></table></div>
     </div>`:''}
-    ${(f.attachments||[]).length>0?`<div class="detail-section">
-      <div class="dsec-title"><i class="fa-solid fa-paperclip" style="margin-right:6px;color:var(--teal)"></i>Pièces jointes (${f.attachments.length})</div>
-      <div style="font-size:12px;color:var(--t2)">
-        ${f.attachments.map((att,i)=>`<div style="display:flex;align-items:center;gap:8px;padding:8px;background:var(--s2);border-radius:8px;margin-bottom:6px">
-          <i class="fa-solid ${att.type.startsWith('image')?'fa-image':att.type.includes('pdf')?'fa-file-pdf':att.type.includes('word')?'fa-file-word':att.type.includes('sheet')?'fa-file-excel':'fa-file'}" style="color:var(--teal);font-size:14px"></i>
-          <div style="flex:1;min-width:0">
-            <div style="font-weight:500;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${att.name}</div>
-            <div style="font-size:10px;color:var(--t3)">${(att.size/1024).toFixed(1)}KB · ${fmt(att.uploadDate)}</div>
-          </div>
-          <button class="ib" onclick="downloadAttachment('${i}','${f.id}')" title="Télécharger" style="color:var(--teal)"><i class="fa-solid fa-download"></i></button>
-        </div>`).join('')}
-      </div>
-    </div>`:''}
-    <div class="detail-section">
-      <div class="dsec-title"><i class="fa-solid fa-history" style="margin-right:6px;color:var(--teal)"></i>Historique</div>
-      <div style="font-size:12px;color:var(--t2);line-height:2">
-        ${(f.historique||[]).length ? (f.historique.map(h=>`<div style="padding:5px 0;border-bottom:1px solid var(--b1)"><span style="color:var(--teal);font-weight:600">${h.action}</span> par <strong>${h.user}</strong> le <span style="color:var(--t3)">${fmt(h.date)}</span></div>`).join('')) : '<span style="color:var(--t3)">Aucun historique</span>'}
-      </div>
-    </div>
   </div>
   <div class="mf">
     <button class="btn" onclick="closeModal()">Fermer</button>
-    ${(f.statut==='Résolu'||f.statut==='Clôturé')&&currentUser?.role!=='admin'?
-      `<div style="font-size:12px;color:var(--ora);display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--orag);border-radius:8px;margin-right:auto"><i class="fa-solid fa-lock"></i>Fiche bloquée (admin only)</div>`:
-      `<button class="btn primary" onclick="closeModal();openEdit('${f.id}')"><i class="fa-solid fa-pen"></i> Modifier</button>`
-    }
+    <button class="btn primary" onclick="closeModal();openEdit('${f.id}')"><i class="fa-solid fa-pen"></i> Modifier</button>
   </div>`, '740px');
 }
 
@@ -1324,7 +1139,7 @@ function printFAC(id) {
   <tr>
     <td class="logo-cell" style="border:none;padding:10px;width:120px"><img src="${MAURILAIT_LOGO}" alt="Maurilait" style="max-width:110px;max-height:60px;object-fit:contain"></td>
     <td class="title-cell" style="border-left:2px solid #185FA5;border-right:2px solid #185FA5">
-      <div style="font-size:15px;font-weight:700;color:#0C447C">FICHE D'ACTION CORRECTIVE</div>
+      <div style="font-size:15px;font-weight:700;color:#0C447C">FICHE D'ACTION CORRECTIVE RÉCURRENTE</div>
       <div style="font-size:11px;color:#185FA5;margin-top:3px">MySMQ — Système de Management Qualité</div>
     </td>
     <td class="ref-cell" style="border:none;width:180px">
@@ -1517,95 +1332,17 @@ function renderDashStats() {
 function destroyChart(id) { if(charts[id]){charts[id].destroy();delete charts[id];} }
 
 function renderCharts() {
-  // Vérifier que Chart.js est bien chargé
-  if (typeof Chart === 'undefined') {
-    console.error('Chart.js not loaded');
-    showToast('Erreur: Chart.js non chargé', 'error');
-    return;
-  }
   renderDashStats();
   const gridC='rgba(255,255,255,0.05)', tickC='#8A90A8';
   const months=['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
-  const mDataCreated=new Array(12).fill(0);
-  const mDataResolved=new Array(12).fill(0);
-  FACS.forEach(f=>{
-    if(f.date) mDataCreated[new Date(f.date).getMonth()]++;
-    if(f.statut==='Résolu'||f.statut==='Clôturé'){
-      if(f.date) mDataResolved[new Date(f.date).getMonth()]++;
-    }
-  });
+  const mData=new Array(12).fill(0);
+  FACS.forEach(f=>{if(f.date) mData[new Date(f.date).getMonth()]++;});
 
   destroyChart('chartMois');
-  
-  const totalFacs = mDataCreated.map((c, i) => c);
-  const closureRates = totalFacs.map((total, i) => {
-    const resolved = mDataResolved[i];
-    return total > 0 ? Math.round((resolved / total) * 100) : 0;
-  });
-  
   charts['chartMois']=new Chart(document.getElementById('chartMois'),{
     type:'bar',
-    data:{
-      labels:months,
-      datasets:[
-        {
-          type:'bar',
-          label:'Nombre total FAC',
-          data:totalFacs,
-          backgroundColor:'#14B8A680',
-          borderColor:'#14B8A6',
-          borderWidth:1.5,
-          borderRadius:5,
-          yAxisID:'y',
-          order:2
-        },
-        {
-          type:'line',
-          label:'Taux de clôture (%)',
-          data:closureRates,
-          borderColor:'#F59E0B',
-          backgroundColor:'rgba(245, 158, 11, 0.1)',
-          borderWidth:3,
-          fill:true,
-          tension:0.4,
-          pointBackgroundColor:'#F59E0B',
-          pointRadius:5,
-          pointHoverRadius:7,
-          yAxisID:'y1',
-          order:1
-        }
-      ]
-    },
-    options:{
-      responsive:true,
-      maintainAspectRatio:false,
-      interaction:{mode:'index',intersect:false},
-      plugins:{
-        legend:{display:true,position:'top',labels:{color:tickC,font:{size:12,weight:'600'},usePointStyle:true,padding:15}}
-      },
-      scales:{
-        y:{
-          type:'linear',
-          display:true,
-          position:'left',
-          title:{display:true,text:'Nombre de FAC',color:tickC,font:{size:11,weight:'600'}},
-          beginAtZero:true,
-          ticks:{color:tickC,stepSize:5},
-          grid:{color:gridC}
-        },
-        y1:{
-          type:'linear',
-          display:true,
-          position:'right',
-          title:{display:true,text:'Taux de clôture (%)',color:tickC,font:{size:11,weight:'600'}},
-          min:0,
-          max:100,
-          ticks:{color:tickC,callback:v=>`${v}%`},
-          grid:{drawOnChartArea:false}
-        },
-        x:{ticks:{color:tickC},grid:{display:false}}
-      }
-    }
+    data:{labels:months,datasets:[{label:'FAC',data:mData,backgroundColor:'#14B8A620',borderColor:'#14B8A6',borderWidth:1.5,borderRadius:5,hoverBackgroundColor:'#14B8A640'}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1,color:tickC},grid:{color:gridC}},x:{ticks:{color:tickC},grid:{display:false}}}}
   });
 
   const tColors=['#14B8A6','#EF4444','#F59E0B','#10B981','#8B5CF6','#06B6D4','#F97316','#6B7280'];
@@ -1861,52 +1598,13 @@ function showToast(msg, type='success') {
 }
 
 /* ════════════════════════════════════════════
-   INIT + SESSION RESTORE
+   INIT
 ════════════════════════════════════════════ */
-function restoreSession() {
-  // Chercher utilisateur dans la mémoire de session
-  try {
-    const sessionUser = sessionStorage.getItem('mysmq_sessionUser');
-    if (sessionUser) {
-      const su = JSON.parse(sessionUser);
-      currentUser = USERS.find(u => u.id === su.id);
-      if (currentUser) {
-        // L'utilisateur était connecté, restaurer la session
-        document.getElementById('loginScreen').style.display = 'none';
-        document.getElementById('app').style.display = 'flex';
-        document.getElementById('uav').textContent = currentUser.avatar;
-        document.getElementById('uname').textContent = currentUser.name;
-        document.getElementById('urole').textContent = currentUser.role === 'admin' ? 'Administrateur' : currentUser.poste;
-        if (currentUser.role !== 'admin') {
-          document.getElementById('navUsers').style.display = 'none';
-          document.getElementById('sbUsers').style.display = 'none';
-        }
-        initSelects();
-        // Restaurer la dernière page
-        const lastPage = loadLastPage();
-        setPage(lastPage);
-        if (lastPage === 'dash') setTimeout(renderCharts, 150);
-        if (lastPage === 'users') renderUsers();
-        return true;
-      }
-    }
-  } catch(e) { console.error('Session restore failed:', e); }
-  return false;
-}
-
 window.addEventListener('DOMContentLoaded', () => {
   // Inject Maurilait logo everywhere it's needed
   const loginLogo = document.getElementById('loginMaurilaitLogo');
   if (loginLogo) loginLogo.src = MAURILAIT_LOGO;
   initLoginDropdown();
-  
-  // Essayer de restaurer la session
-  const restored = restoreSession();
-  if (!restored) {
-    // Si pas de session, afficher le login
-    document.getElementById('loginScreen').style.display = 'flex';
-    document.getElementById('app').style.display = 'none';
-  }
 });
 </script>
 </body>
