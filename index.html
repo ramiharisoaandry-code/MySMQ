@@ -37,51 +37,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--t1);font-size:13px
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 .mysmq-logo-wrap{text-align:center;margin-bottom:28px}
 .mysmq-logo-icon{width:64px;height:64px;background:linear-gradient(135deg,var(--teal),var(--ac));border-radius:18px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px;box-shadow:0 12px 32px rgba(20,184,166,0.35);font-family:var(--font-d);font-size:26px;font-weight:800;color:#fff;letter-spacing:-1px}
-
-/* Logo Maurilait — cadre dégradé premium */
-.logo-frame-wrap{
-  display:inline-block;
-  position:relative;
-  margin-bottom:16px;
-}
-.logo-frame-wrap::before{
-  content:'';
-  position:absolute;inset:-2px;
-  border-radius:22px;
-  background:linear-gradient(135deg,#14B8A6,#3B82F6,#8B5CF6,#14B8A6);
-  background-size:300% 300%;
-  animation:gradientShift 4s ease infinite;
-  z-index:0;
-  opacity:0.85;
-}
-.logo-frame-wrap::after{
-  content:'';
-  position:absolute;inset:2px;
-  border-radius:19px;
-  background:var(--s1);
-  z-index:1;
-}
-@keyframes gradientShift{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-.logo-frame-inner{
-  position:relative;z-index:2;
-  background:#fff;
-  border-radius:18px;
-  padding:12px 20px;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 8px 32px rgba(20,184,166,0.25),0 2px 8px rgba(0,0,0,0.3);
-}
-.logo-frame-inner img{
-  height:56px;
-  width:auto;
-  object-fit:contain;
-  display:block;
-  filter:drop-shadow(0 2px 4px rgba(0,0,0,0.08));
-}
-
 .mysmq-title{font-family:var(--font-d);font-size:26px;font-weight:800;margin-bottom:5px}
 .mysmq-title .my{color:var(--teal)}.mysmq-title .smq{color:var(--t1)}
 .mysmq-ref{display:inline-block;font-size:11px;color:var(--t2);background:var(--s2);border:1px solid var(--b1);padding:4px 12px;border-radius:20px}
@@ -324,11 +279,7 @@ input[type=checkbox]{accent-color:var(--teal);width:13px;height:13px}
   <div class="login-bg"></div><div class="login-grid"></div>
   <div class="login-card">
     <div class="mysmq-logo-wrap">
-      <div class="logo-frame-wrap">
-        <div class="logo-frame-inner">
-          <img id="loginMaurilaitLogo" src="" alt="Maurilait">
-        </div>
-      </div>
+      <div class="mysmq-logo-icon">M</div>
       <div class="mysmq-title"><span class="my">My</span><span class="smq">SMQ</span></div>
       <span class="mysmq-ref">ENRG07-SMQ · Version 4.2 · MSA Eclosia</span>
     </div>
@@ -473,14 +424,9 @@ input[type=checkbox]{accent-color:var(--teal);width:13px;height:13px}
 
 <script>
 /* ════════════════════════════════════════════
-   LOGO MAURILAIT (base64)
-════════════════════════════════════════════ */
-const MAURILAIT_LOGO = 'data:image/jpeg;base64,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';
-
-/* ════════════════════════════════════════════
    DATA
 ════════════════════════════════════════════ */
-const TYPES   = ["Réclamation Client","Réclamation Fournisseur","NC Matières Premières","NC Produits finis","NC Audits","SST / Environnement","Écart vs objectif","Process","Autres"];
+const TYPES   = ["Réclamation Client","Réclamation Fournisseur","NC Matières Premières","NC Audits","SST / Environnement","Écart vs objectif","Process","Autres"];
 const CATS    = ["Critique","Majeure","Mineure"];
 const STATUTS = ["Ouvert","En cours","Résolu","Clôturé"];
 const PRIOS   = ["Critique","Haute","Moyenne","Faible"];
@@ -490,33 +436,14 @@ const PC = {Critique:"#EF4444",Haute:"#F59E0B",Moyenne:"#3B82F6",Faible:"#10B981
 const SC = {Ouvert:"#EF4444","En cours":"#F59E0B",Résolu:"#10B981",Clôturé:"#6B7280"};
 const CC = {Critique:"#EF4444",Majeure:"#F59E0B",Mineure:"#10B981"};
 
-/* ── Données par défaut ── */
-const DEFAULT_USERS = [
+let USERS = [
   {id:1,name:"Admin SMQ",email:"admin.maurilait@eclosia.mg",username:"admin",role:"admin",password:"admin123",avatar:"AS",poste:"Responsable Qualité"},
   {id:2,name:"Marie Rakoto",email:"marie.maurilait@eclosia.mg",username:"marie.rakoto",role:"user",password:"marie123",avatar:"MR",poste:"Chef Production"},
   {id:3,name:"Jean Rasolo",email:"jean.maurilait@eclosia.mg",username:"jean.rasolo",role:"user",password:"jean123",avatar:"JR",poste:"Technicien Qualité"},
   {id:4,name:"Sophie Andria",email:"sophie.maurilait@eclosia.mg",username:"sophie.andria",role:"user",password:"sophie123",avatar:"SA",poste:"Responsable Maintenance"},
 ];
 
-/* ── Chargement localStorage ── */
-function loadData() {
-  try {
-    const u = localStorage.getItem('mysmq_users');
-    const f = localStorage.getItem('mysmq_facs');
-    return {
-      users: u ? JSON.parse(u) : DEFAULT_USERS,
-      facs:  f ? JSON.parse(f) : []
-    };
-  } catch(e) { return { users: DEFAULT_USERS, facs: [] }; }
-}
-function saveUsers() { try { localStorage.setItem('mysmq_users', JSON.stringify(USERS)); } catch(e){} }
-function saveFacs()  { try { localStorage.setItem('mysmq_facs',  JSON.stringify(FACS));  } catch(e){} }
-
-const _loaded = loadData();
-let USERS = _loaded.users;
-
-/* ── FAC par défaut si localStorage vide ── */
-let FACS = _loaded.facs.length ? _loaded.facs : [
+let FACS = [
   {
     id:"FAC-2026-001",date:"2026-05-01",emetteur:"Qualité",cc:"Production",
     type:"NC Matières Premières",produit:"Lait pasteurisé",fournisseur:"Fournisseur A",
@@ -576,8 +503,6 @@ let FACS = _loaded.facs.length ? _loaded.facs : [
   },
 ];
 
-/* FACS initialisés dans la section DATA ci-dessus */
-
 /* ════════════════════════════════════════════
    STATE
 ════════════════════════════════════════════ */
@@ -616,18 +541,13 @@ function initLoginDropdown() {
   input.addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
   document.getElementById('lp').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
 
-  // Remember me restore — identifiant + mot de passe
-  const saved = localStorage.getItem('mysmq_remember');
+  // Remember me restore
+  const saved = localStorage.getItem('mysmq_user');
   if (saved) {
     try {
-      const {id, pwd} = JSON.parse(saved);
+      const {id} = JSON.parse(saved);
       const u = USERS.find(x=>x.id===id);
-      if (u) {
-        input.value = u.name;
-        document.getElementById('selectedUserId').value = u.id;
-        document.getElementById('lp').value = pwd || '';
-        document.getElementById('rememberMe').checked = true;
-      }
+      if (u) { input.value=u.name; document.getElementById('selectedUserId').value=u.id; document.getElementById('rememberMe').checked=true; }
     } catch(e){}
   }
 }
@@ -656,11 +576,8 @@ function doLogin() {
   if (!u) { err.style.display='block'; err.textContent='Identifiant ou mot de passe incorrect.'; return; }
   err.style.display='none';
 
-  if (document.getElementById('rememberMe').checked) {
-    localStorage.setItem('mysmq_remember', JSON.stringify({id:u.id, pwd:pass}));
-  } else {
-    localStorage.removeItem('mysmq_remember');
-  }
+  if (document.getElementById('rememberMe').checked) localStorage.setItem('mysmq_user', JSON.stringify({id:u.id}));
+  else localStorage.removeItem('mysmq_user');
 
   currentUser = u;
   document.getElementById('loginScreen').style.display='none';
@@ -676,12 +593,8 @@ function doLogout() {
   currentUser=null;
   document.getElementById('app').style.display='none';
   document.getElementById('loginScreen').style.display='flex';
-  // Ne pas effacer si "Se souvenir de moi" est coché
-  if (!document.getElementById('rememberMe').checked) {
-    document.getElementById('lp').value='';
-    document.getElementById('loginUserInput').value='';
-    document.getElementById('selectedUserId').value='';
-  }
+  document.getElementById('lp').value='';
+  if (!document.getElementById('rememberMe').checked) { document.getElementById('loginUserInput').value=''; document.getElementById('selectedUserId').value=''; }
 }
 
 /* ════════════════════════════════════════════
@@ -989,7 +902,7 @@ function saveFac() {
   };
   if(editId){FACS=FACS.map(f=>f.id===editId?newFac:f);showToast('FAC modifiée ✓');}
   else{FACS=[...FACS,newFac];showToast('FAC créée ✓');}
-  saveFacs(); closeModal(); renderTable();
+  closeModal(); renderTable();
 }
 
 /* ════════════════════════════════════════════
@@ -1093,7 +1006,6 @@ function updateNombreCas(id, delta) {
   const f = FACS.find(x=>x.id===id);
   if (!f) return;
   f.nombreCas = Math.max(1, (f.nombreCas||1) + delta);
-  saveFacs();
   const el = document.getElementById('ncasDisplay');
   if (el) el.textContent = f.nombreCas;
   renderTable();
@@ -1137,7 +1049,7 @@ function printFAC(id) {
 <!-- EN-TÊTE -->
 <table style="margin-bottom:8px;border:2px solid #185FA5">
   <tr>
-    <td class="logo-cell" style="border:none;padding:10px;width:120px"><img src="${MAURILAIT_LOGO}" alt="Maurilait" style="max-width:110px;max-height:60px;object-fit:contain"></td>
+    <td class="logo-cell" style="border:none;padding:10px">M<span style="font-size:12px;color:#3B82F6">SMQ</span></td>
     <td class="title-cell" style="border-left:2px solid #185FA5;border-right:2px solid #185FA5">
       <div style="font-size:15px;font-weight:700;color:#0C447C">FICHE D'ACTION CORRECTIVE RÉCURRENTE</div>
       <div style="font-size:11px;color:#185FA5;margin-top:3px">MySMQ — Système de Management Qualité</div>
@@ -1278,7 +1190,7 @@ function confirmDelete(id) {
 
 function doDelete(id) {
   FACS=FACS.filter(f=>f.id!==id);
-  saveFacs(); closeModal(); renderTable(); showToast('FAC supprimée','error');
+  closeModal(); renderTable(); showToast('FAC supprimée','error');
 }
 
 /* ════════════════════════════════════════════
@@ -1390,46 +1302,43 @@ function renderCharts() {
 }
 
 /* ════════════════════════════════════════════
-   USERS (CRUD complet — admin only)
+   USERS
 ════════════════════════════════════════════ */
 function renderUsers() {
   const el=document.getElementById('userCount'); if(el) el.textContent=`${USERS.length} comptes`;
   const grid=document.getElementById('userGrid'); if(!grid) return;
-  const isAdmin=currentUser?.role==='admin';
   grid.innerHTML=USERS.map(u=>{
     const uf=FACS.filter(f=>f.createurId===u.id).length;
     const isMe=u.id===currentUser?.id;
     return `<div class="uc">
       <div class="ucav">${u.avatar}</div>
-      <div style="flex:1;min-width:0">
+      <div style="flex:1">
         <div class="ucname">${u.name}${isMe?' <span style="font-size:10px;color:var(--teal)">(vous)</span>':''}</div>
         <div class="ucemail">${u.email}</div>
-        <div style="font-size:11px;color:var(--t2);margin-bottom:4px"><i class="fa-solid fa-id-badge" style="margin-right:4px;color:var(--t3)"></i>${u.username}</div>
+        <div style="font-size:11px;color:var(--t2);margin-bottom:6px"><i class="fa-solid fa-id-badge" style="margin-right:4px;color:var(--t3)"></i>${u.username}</div>
         <div style="font-size:11px;color:var(--t2);margin-bottom:7px">${u.poste}</div>
-        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
           <span class="tag ${u.role==='admin'?'tag-admin':'tag-user'}">${u.role==='admin'?'Admin':'Utilisateur'}</span>
-          <span style="font-size:10px;color:var(--t3)">${uf} FAC</span>
+          <span style="font-size:10px;color:var(--t3)">${uf} FAC créée${uf>1?'s':''}</span>
         </div>
-        ${isAdmin?`<div style="display:flex;gap:5px;margin-top:10px;flex-wrap:wrap">
-          <button class="btn sm secondary" onclick="openEditUser(${u.id})" style="font-size:11px;padding:5px 9px"><i class="fa-solid fa-pen"></i> Modifier</button>
-          <button class="btn sm" onclick="openResetPwd(${u.id})" style="font-size:11px;padding:5px 9px;background:var(--orag);border-color:rgba(245,158,11,0.2);color:var(--ora)"><i class="fa-solid fa-key"></i> MDP</button>
-          ${!isMe?`<button class="btn sm danger" onclick="confirmDeleteUser(${u.id})" style="font-size:11px;padding:5px 9px"><i class="fa-solid fa-trash"></i></button>`:''}
-        </div>`:''}
       </div>
     </div>`;
   }).join('');
 }
 
+/* ════════════════════════════════════════════
+   USER FORM
+════════════════════════════════════════════ */
 function openUserForm() {
-  showModal(`<div class="mh"><div class="mt"><i class="fa-solid fa-user-plus" style="color:var(--teal);margin-right:8px"></i>Créer un compte utilisateur</div><button class="ib" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button></div>
+  showModal(`<div class="mh"><div class="mt">Nouvel utilisateur</div><button class="ib" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button></div>
   <div class="mb">
     <div class="frow2">
-      <div class="fg"><label>Nom complet *</label><input class="finput" type="text" id="unName" placeholder="Prénom Nom"></div>
-      <div class="fg"><label>Identifiant *</label><input class="finput" type="text" id="unUsername" placeholder="ex: jean.rasolo"></div>
+      <div class="fg"><label>Nom complet</label><input class="finput" type="text" id="unName" placeholder="Prénom Nom"></div>
+      <div class="fg"><label>Identifiant</label><input class="finput" type="text" id="unUsername" placeholder="ex: jean.rasolo"></div>
     </div>
     <div class="frow2">
       <div class="fg"><label>Email (@eclosia.mg)</label><input class="finput" type="email" id="unEmail" placeholder="prenom.maurilait@eclosia.mg"></div>
-      <div class="fg"><label>Mot de passe *</label><input class="finput" type="password" id="unPass" placeholder="Minimum 6 caractères"></div>
+      <div class="fg"><label>Mot de passe</label><input class="finput" type="password" id="unPass" placeholder="Minimum 6 caractères"></div>
     </div>
     <div class="frow2">
       <div class="fg"><label>Poste / Fonction</label><input class="finput" type="text" id="unPoste" placeholder="ex: Technicien Qualité"></div>
@@ -1450,113 +1359,11 @@ function saveUser() {
   const poste=document.getElementById('unPoste').value.trim();
   const role=document.getElementById('unRole').value;
   if(!name||!username||!pass){showToast('Nom, identifiant et mot de passe obligatoires','error');return;}
-  if(pass.length<6){showToast('Mot de passe trop court (6 caractères min.)','error');return;}
+  if(USERS.some(u=>u.email===email)){showToast('Cet email est déjà utilisé','error');return;}
   if(USERS.some(u=>u.username===username)){showToast('Cet identifiant est déjà utilisé','error');return;}
-  if(email&&USERS.some(u=>u.email===email)){showToast('Cet email est déjà utilisé','error');return;}
   const initials=name.split(' ').map(x=>x[0]||'').join('').toUpperCase().slice(0,2);
   USERS.push({id:Date.now(),name,email:email||`${username}@eclosia.mg`,username,role,password:pass,avatar:initials,poste:poste||'—'});
-  saveUsers(); closeModal(); renderUsers(); showToast(`Compte "${name}" créé ✓`);
-}
-
-function openEditUser(id) {
-  const u=USERS.find(x=>x.id===id); if(!u) return;
-  showModal(`<div class="mh"><div class="mt"><i class="fa-solid fa-user-pen" style="color:var(--teal);margin-right:8px"></i>Modifier l'utilisateur</div><button class="ib" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button></div>
-  <div class="mb">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;padding:12px;background:var(--s2);border-radius:10px">
-      <div style="width:44px;height:44px;background:linear-gradient(135deg,var(--teal),var(--ac));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff">${u.avatar}</div>
-      <div><div style="font-weight:600">${u.name}</div><div style="font-size:11px;color:var(--t2)">${u.username}</div></div>
-    </div>
-    <div class="frow2">
-      <div class="fg"><label>Nom complet *</label><input class="finput" type="text" id="euName" value="${u.name}"></div>
-      <div class="fg"><label>Identifiant *</label><input class="finput" type="text" id="euUsername" value="${u.username}"></div>
-    </div>
-    <div class="frow2">
-      <div class="fg"><label>Email</label><input class="finput" type="email" id="euEmail" value="${u.email}"></div>
-      <div class="fg"><label>Poste / Fonction</label><input class="finput" type="text" id="euPoste" value="${u.poste}"></div>
-    </div>
-    <div class="fg"><label>Rôle</label>
-      <select class="fselect" id="euRole">
-        <option value="user" ${u.role==='user'?'selected':''}>Utilisateur</option>
-        <option value="admin" ${u.role==='admin'?'selected':''}>Administrateur</option>
-      </select>
-    </div>
-  </div>
-  <div class="mf">
-    <button class="btn" onclick="closeModal()">Annuler</button>
-    <button class="btn primary" onclick="saveEditUser(${id})"><i class="fa-solid fa-check"></i> Enregistrer</button>
-  </div>`, '500px');
-}
-
-function saveEditUser(id) {
-  const u=USERS.find(x=>x.id===id); if(!u) return;
-  const name=document.getElementById('euName').value.trim();
-  const username=document.getElementById('euUsername').value.trim();
-  if(!name||!username){showToast('Nom et identifiant obligatoires','error');return;}
-  if(USERS.some(x=>x.username===username&&x.id!==id)){showToast('Identifiant déjà utilisé','error');return;}
-  u.name=name; u.username=username;
-  u.email=document.getElementById('euEmail').value.trim()||u.email;
-  u.poste=document.getElementById('euPoste').value.trim()||'—';
-  u.role=document.getElementById('euRole').value;
-  u.avatar=name.split(' ').map(x=>x[0]||'').join('').toUpperCase().slice(0,2);
-  saveUsers(); closeModal(); renderUsers(); showToast(`Compte "${name}" modifié ✓`);
-  // Mettre à jour affichage header si c'est l'utilisateur courant
-  if(currentUser?.id===id){
-    currentUser=u;
-    document.getElementById('uav').textContent=u.avatar;
-    document.getElementById('uname').textContent=u.name;
-    document.getElementById('urole').textContent=u.role==='admin'?'Administrateur':u.poste;
-  }
-}
-
-function openResetPwd(id) {
-  const u=USERS.find(x=>x.id===id); if(!u) return;
-  showModal(`<div class="mh"><div class="mt"><i class="fa-solid fa-key" style="color:var(--ora);margin-right:8px"></i>Modifier le mot de passe</div><button class="ib" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button></div>
-  <div class="mb">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding:10px;background:var(--s2);border-radius:10px">
-      <div style="width:36px;height:36px;background:linear-gradient(135deg,var(--teal),var(--ac));border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:13px">${u.avatar}</div>
-      <div style="font-weight:600">${u.name} <span style="font-size:11px;color:var(--t2);font-weight:400">— ${u.username}</span></div>
-    </div>
-    <div class="fg"><label>Nouveau mot de passe *</label><input class="finput" type="password" id="pwdNew" placeholder="Minimum 6 caractères"></div>
-    <div class="fg"><label>Confirmer le mot de passe *</label><input class="finput" type="password" id="pwdConfirm" placeholder="Répéter le mot de passe"></div>
-    <div style="font-size:11px;color:var(--t3);margin-top:-6px"><i class="fa-solid fa-circle-info" style="margin-right:4px"></i>L'utilisateur devra utiliser ce nouveau mot de passe à sa prochaine connexion.</div>
-  </div>
-  <div class="mf">
-    <button class="btn" onclick="closeModal()">Annuler</button>
-    <button class="btn primary" onclick="savePwd(${id})" style="background:var(--ora);border-color:var(--ora)"><i class="fa-solid fa-key"></i> Changer le mot de passe</button>
-  </div>`, '460px');
-}
-
-function savePwd(id) {
-  const np=document.getElementById('pwdNew').value;
-  const cp=document.getElementById('pwdConfirm').value;
-  if(np.length<6){showToast('Mot de passe trop court (6 car. min.)','error');return;}
-  if(np!==cp){showToast('Les mots de passe ne correspondent pas','error');return;}
-  const u=USERS.find(x=>x.id===id); if(!u) return;
-  u.password=np; saveUsers(); closeModal();
-  showToast(`Mot de passe de "${u.name}" modifié ✓`);
-}
-
-function confirmDeleteUser(id) {
-  const u=USERS.find(x=>x.id===id); if(!u) return;
-  if(u.id===currentUser?.id){showToast('Impossible de supprimer votre propre compte','error');return;}
-  showModal(`<div class="mh"><div class="mt">Supprimer l'utilisateur</div><button class="ib" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button></div>
-  <div class="mb" style="text-align:center;padding:28px 24px">
-    <div class="confirm-icon"><i class="fa-solid fa-user-minus"></i></div>
-    <div style="font-size:15px;font-weight:700;margin-bottom:6px">${u.name}</div>
-    <div style="font-size:13px;color:var(--t2)">Ce compte sera définitivement supprimé.<br>Les fiches FAC créées par cet utilisateur seront conservées.</div>
-  </div>
-  <div class="mf">
-    <button class="btn" onclick="closeModal()">Annuler</button>
-    <button class="btn danger" onclick="doDeleteUser(${id})"><i class="fa-solid fa-user-minus"></i> Supprimer le compte</button>
-  </div>`, '420px');
-}
-
-function doDeleteUser(id) {
-  if(id===currentUser?.id){showToast('Impossible de supprimer votre propre compte','error');return;}
-  const u=USERS.find(x=>x.id===id);
-  USERS=USERS.filter(x=>x.id!==id);
-  saveUsers(); closeModal(); renderUsers();
-  showToast(`Compte "${u?.name}" supprimé`,'error');
+  closeModal(); renderUsers(); showToast(`Utilisateur ${name} créé ✓`);
 }
 
 /* ════════════════════════════════════════════
@@ -1600,12 +1407,7 @@ function showToast(msg, type='success') {
 /* ════════════════════════════════════════════
    INIT
 ════════════════════════════════════════════ */
-window.addEventListener('DOMContentLoaded', () => {
-  // Inject Maurilait logo everywhere it's needed
-  const loginLogo = document.getElementById('loginMaurilaitLogo');
-  if (loginLogo) loginLogo.src = MAURILAIT_LOGO;
-  initLoginDropdown();
-});
+window.addEventListener('DOMContentLoaded', initLoginDropdown);
 </script>
 </body>
 </html>
